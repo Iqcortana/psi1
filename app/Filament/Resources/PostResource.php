@@ -2,16 +2,24 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PostResource\Pages;
-use App\Filament\Resources\PostResource\RelationManagers;
-use App\Models\Post;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Models\Post;
 use Filament\Tables;
+use Filament\Forms\Set;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\PostResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\PostResource\RelationManagers;
+
 
 class PostResource extends Resource
 {
@@ -23,7 +31,24 @@ class PostResource extends Resource
     {
         return $form
             ->schema([
-                //
+                TextInput::make('title')
+                ->live(onBlur: true)
+                ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state)))
+                ->required(),
+    
+                TextInput::make('slug'),
+                Select::make('category_id')
+                ->options([
+                    'informasi' => 'Informasi',
+                    'promosi' => 'Promosi',
+                    'blog' => 'Blog',
+                ])
+                ->required(),
+                FileUpload::make('image')
+                ->required(),
+                RichEditor::make('blog')
+                ->columnSpan('full')
+                ->required()
             ]);
     }
 
@@ -31,7 +56,20 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('id'),
+                TextColumn::make('title'),
+                TextColumn::make('category_id')
+                ->badge()
+                ->color(fn (string $state): string => match ($state) {
+                    'informasi' => 'info',
+                    'promosi' => 'danger',
+                    'blog' => 'warning',
+                }),
+                TextColumn::make('blog')
+                ->limit(50)
+                ->description(fn (Post $record): string => $record->description),
+                TextColumn::make('created_at')
+                ->dateTime()
             ])
             ->filters([
                 //

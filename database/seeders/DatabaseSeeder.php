@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         // factory user super admin
         \App\Models\User::create([
             'name' => 'Super Admin',
+            'username' => 'superadmin',
             'email' => 'su-admin@gmail.com',
             'email_verified_at' => now(),
             'role' => 'super-admin',
@@ -24,13 +25,16 @@ class DatabaseSeeder extends Seeder
 
         // factory category (*jika ditambah, maka tambah juga opsi badge di table filament)
         \App\Models\Category::create([
-            'category' => 'informasi',
+            'name' => 'Informasi',
+            'slug' => 'informasi',
         ]);
         \App\Models\Category::create([
-            'category' => 'promosi',
+            'name' => 'Promosi',
+            'slug' => 'promosi',
         ]);
         \App\Models\Category::create([
-            'category' => 'blog',
+            'name' => 'Blog',
+            'slug' => 'blog',
         ]);
 
         // factory post

@@ -14,18 +14,23 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\CategoryResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\CategoryResource\RelationManagers;
+use Filament\Tables\Contracts\HasTable;
 
 class CategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-folder';
+    protected static ?string $recordTitleAttribute = 'name';
+
+    protected static ?string $navigationIcon = 'heroicon-o-folder-open';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('category')
+                TextInput::make('name')
+                ->searchable(),
+                TextInput::make('slug')
                 ->required()
             ]);
     }
@@ -34,8 +39,18 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id'),
-                TextColumn::make('category')
+                TextColumn::make('No')->state(
+                    static function (HasTable $livewire, $rowLoop): string {
+                        return (string) (
+                            $rowLoop->iteration +
+                            ($livewire->getTableRecordsPerPage() * (
+                                $livewire->getTablePage() - 1
+                            ))
+                        );
+                    }
+                ),
+                TextColumn::make('name'),
+                TextColumn::make('slug')
             ])
             ->filters([
                 //

@@ -16,32 +16,38 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\AdminResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\AdminResource\RelationManagers;
+use Filament\Tables\Contracts\HasTable;
+use Filament\Tables\Filters\Filter;
 
 class AdminResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $recordTitleAttribute = 'name';
+
+    protected static ?string $navigationIcon = 'heroicon-o-user';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 TextInput::make('name')
-                ->required(),
+                    ->required(),
+                TextInput::make('username')
+                    ->required(),
                 TextInput::make('email')
-                ->required()
-                ->email(),
+                    ->required()
+                    ->email(),
                 Select::make('role')
-                ->options([
-                    'super-admin' => 'Super Admin',
-                    'admin' => 'Admin',
-                ])
-                ->required(),
+                    ->options([
+                        'super-admin' => 'Super Admin',
+                        'admin' => 'Admin',
+                    ])
+                    ->required(),
                 TextInput::make('password')
-                ->password()
-                ->autocomplete('new-password')
-                ->required()
+                    ->password()
+                    ->autocomplete('new-password')
+                    ->required()
             ]);
     }
 
@@ -49,18 +55,34 @@ class AdminResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id'),
-                TextColumn::make('name'),
-                TextColumn::make('email'),
+                TextColumn::make('No')->state(
+                    static function (HasTable $livewire, $rowLoop): string {
+                        return (string) (
+                            $rowLoop->iteration +
+                            ($livewire->getTableRecordsPerPage() * (
+                                $livewire->getTablePage() - 1
+                            ))
+                        );
+                    }
+                ),
+                TextColumn::make('name')
+                    ->searchable(),
+                TextColumn::make('username')
+                    ->searchable(),
+                TextColumn::make('email')
+                    ->searchable(),
                 TextColumn::make('role')
-                ->badge()
-                ->color(fn (string $state): string => match ($state) {
-                    'super-admin' => 'danger',
-                    'admin' => 'warning',
-                })
+                    ->badge()
+                    ->color(fn(string $state): string => match ($state) {
+                        'super-admin' => 'danger',
+                        'admin' => 'warning',
+                    })
             ])
             ->filters([
-                //
+                Filter::make('Super Admin')
+                    ->query(fn(Builder $query): Builder => $query->where('role', 'super-admin')),
+                Filter::make('Admin')
+                    ->query(fn(Builder $query): Builder => $query->where('role', 'admin'))
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

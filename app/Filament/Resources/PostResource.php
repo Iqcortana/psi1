@@ -19,13 +19,19 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\PostResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\PostResource\RelationManagers;
+use App\Filament\Resources\PostResource\Widgets\StatsOverview;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Contracts\HasTable;
+
 
 
 class PostResource extends Resource
 {
     protected static ?string $model = Post::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $recordTitleAttribute = 'title';
+
+    protected static ?string $navigationIcon = 'heroicon-o-document';
 
     public static function form(Form $form): Form
     {
@@ -35,17 +41,14 @@ class PostResource extends Resource
                 ->live(onBlur: true)
                 ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state)))
                 ->required(),
-    
                 TextInput::make('slug'),
                 Select::make('category_id')
-                ->options([
-                    'informasi' => 'Informasi',
-                    'promosi' => 'Promosi',
-                    'blog' => 'Blog',
-                ])
+                ->relationship(name: 'category', titleAttribute: 'name')
                 ->required(),
                 FileUpload::make('image')
-                ->required(),
+                ->label('Image')
+                ->disk('public') // Sesuaikan dengan disk yang digunakan
+                ->directory('images'),
                 RichEditor::make('blog')
                 ->columnSpan('full')
                 ->required()
@@ -56,18 +59,21 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id'),
-                TextColumn::make('title'),
-                TextColumn::make('category_id')
-                ->badge()
-                ->color(fn (string $state): string => match ($state) {
-                    'informasi' => 'info',
-                    'promosi' => 'danger',
-                    'blog' => 'warning',
-                }),
-                TextColumn::make('blog')
-                ->limit(50)
-                ->description(fn (Post $record): string => $record->description),
+                TextColumn::make('No')->state(
+                    static function (HasTable $livewire, $rowLoop): string {
+                        return (string) (
+                            $rowLoop->iteration +
+                            ($livewire->getTableRecordsPerPage() * (
+                                $livewire->getTablePage() - 1
+                            ))
+                        );
+                    }
+                ),
+                TextColumn::make('title')
+                ->searchable(),
+                TextColumn::make('category.name'),
+                ImageColumn::make('image')
+                ->disk('public'),
                 TextColumn::make('created_at')
                 ->dateTime()
             ])
@@ -101,5 +107,12 @@ class PostResource extends Resource
             'create' => Pages\CreatePost::route('/create'),
             'edit' => Pages\EditPost::route('/{record}/edit'),
         ];
-    }    
+    }
+    
+    // public static function getHeaderWidgets(): array
+    // {
+    //     return [
+    //         StatsOverview::class
+    //     ];
+    // }
 }

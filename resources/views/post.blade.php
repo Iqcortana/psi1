@@ -61,7 +61,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <h1>{{ $post->title }}</h1>                
-                <img src="{{ $post->getFirstMediaUrl('image') }}" class="card-img-top my-2" alt="gambar {{ $post->category->name }}">
+                <img src="/storage/{{ $post->image }}" class="card-img-top my-2" alt="gambar {{ $post->category->name }}">
 
                 <article class="fs-5">
                     {{--  {{ $post->body }} gapake tag karena tag sdh include didalam body, tapi gbisa dipake karena blade ini escape tag html --}}

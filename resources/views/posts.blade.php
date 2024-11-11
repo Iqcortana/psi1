@@ -76,7 +76,7 @@
                                 <div class="property-item rounded overflow-hidden">
                                     <div class="position-relative overflow-hidden">
                                         <a href="/posts/{{ $post->slug }}">
-                                            <img class="img-fluid" src="{{ $record->image }}" alt="{{ $post->title }}">
+                                            <img class="img-fluid" src="/storage/{{ $post->image }}" alt="{{ $post->title }}">
                                         </a>
                                         <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
                                             {{ $post->category->name }}

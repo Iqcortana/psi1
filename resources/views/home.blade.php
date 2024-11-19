@@ -11,12 +11,11 @@
             </div>
             <div class="col-md-6 animated fadeIn">
                 <div class="owl-carousel header-carousel">
+                    @foreach($posts as $post)
                     <div class="owl-carousel-item">
-                        <img class="img-fluid" src="{{ asset('img/1.jpg') }}" alt="">
-                    </div>
-                    <div class="owl-carousel-item">
-                        <img class="img-fluid" src="{{ asset('img/4.jpg') }}" alt="">
-                    </div>
+                        <img style="width: 468px; height: 523px; object-fit: cover;" src="{{ asset('storage/'. $post->image) }}" alt="">
+                    </div>                    
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -30,10 +29,29 @@
             <div class="row g-2">
                 <div class="col-md-10">
                     <div class="row g-2">
-                        <div class="col-md-4">
-                            <input type="text" class="form-control border-0 py-3" placeholder="Search Keyword">
+                        <div class="col">
+                            <form action="{{ route('pemesanan.track') }}" method="GET">
+                                @csrf
+                                <label for="resi">Masukkan Kode Resi:</label>
+                                <input type="text" id="resi" name="resi" required>
+                                <button type="submit">Cek Status</button>
+                            </form>
+                            
+                            <!-- Tampilkan pesan error jika resi tidak ditemukan -->
+                            @if(session('error'))
+                                <p style="color: red;">{{ session('error') }}</p>
+                            @endif
+                            
+                            <!-- Tampilkan status pemesanan jika ditemukan -->
+                            @if(isset($pemesanan))
+                                <h3>Detail Pemesanan</h3>
+                                <p><strong>Nama Pemesan:</strong> {{ $pemesanan->nama_pemesan }}</p>
+                                <p><strong>Nomor Pemesanan:</strong> {{ $pemesanan->nomor_pemesanan }}</p>
+                                <p><strong>Status:</strong> {{ $pemesanan->status }}</p>
+                                <p><strong>Status:</strong> {{ $pemesanan->lokasi }}</p>
+                            @endif                        
                         </div>
-                        <div class="col-md-4">
+                        {{-- <div class="col-md-4">
                             <select class="form-select border-0 py-3">
                                 <option selected>Tipe Barang</option>
                                 <option value="1">Es Batu</option>
@@ -48,7 +66,7 @@
                                 <option value="2">Samarinda</option>
                                 <option value="3">Bontang</option>
                             </select>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="col-md-2">

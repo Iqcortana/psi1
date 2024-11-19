@@ -6,6 +6,7 @@ use App\Filament\Resources\PemesananResource\Pages;
 use App\Filament\Resources\PemesananResource\RelationManagers;
 use App\Models\Pemesanan;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -27,9 +28,18 @@ class PemesananResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('nomor_pemesanan')
-                            ->label('Nomor Pemesanan')
-                            ->disabled(),
+                TextInput::make('nama_pemesan')
+                ->label('Nama Pemesan')
+                ->disabled(),
+                Select::make('status')
+                ->options([
+                    'Diproses' => 'Diproses',
+                    'Disortir' => 'Disortir',
+                    'Dikirim' => 'Dikirim',
+                    'Sedang Transit' => 'Sedang Transit',
+                    'Diantar Kurir' => 'Diantar Kurir',
+                ]),
+                TextInput::make('lokasi'),
             ]);
     }
 
@@ -47,16 +57,11 @@ class PemesananResource extends Resource
                         );
                     }
                 ),
-                TextColumn::make('nama_pemesan')->label('Nama Pemesan')->searchable(),
-                TextColumn::make('nomor_pemesanan')->label('Nomor Pemesanan')->searchable(),
-                TextColumn::make('nomor_telp')->label('Nomor Telepon'),
-                TextColumn::make('berat')->label('Berat (kg)'),
-                IconColumn::make('sayuran_beku')->label('Sayuran Beku')->boolean(),
-                IconColumn::make('ikan_beku')->label('Ikan Beku')->boolean(),
-                IconColumn::make('daging_beku')->label('Daging Beku')->boolean(),
-                IconColumn::make('makanan_beku')->label('Makanan Beku Lainnya')->boolean(),
-                TextColumn::make('kota_asal')->label('Kota Asal'),
-                TextColumn::make('kota_tujuan')->label('Kota Tujuan'),
+                TextColumn::make('nama_pemesan'),
+                TextColumn::make('kota_asal'),
+                TextColumn::make('kota_tujuan'),
+                TextColumn::make('status'),
+                TextColumn::make('lokasi'),
             ])
             ->filters([
                 //

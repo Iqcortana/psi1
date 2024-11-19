@@ -56,71 +56,79 @@
       </div>
   </div>
   <!-- Search End -->
+  @if(session()->has('success'))
+    <div class="alert alert-success col-lg-8" role="alert">
+      {{ session('success') }}
+    </div>
+  @endif
 
-    <form action="{{ route('pemesanan.store') }}" method="post" class="row g-3">
-      @csrf
-  
-        <div class="col-md-8">
-          <label for="nama_pemesan" class="form-label">Nama Pemesan</label>
-          <input type="text" class="form-control @error('nama_pemesan') is-invalid @enderror" id="nama_pemesan" name="nama_pemesan" value="{{ old('nama_pemesan') }}" required>
-          @error('nama_pemesan')
-            <div class="invalid-feedback">
-              {{ $message }}
+  <div class="wow fadeInUp" data-wow-delay="0.5s">
+      <p class="mb-4">"Dengan jaringan yang luas dan layanan yang andal, Platinum Transport telah menjadi pilihan terpercaya bagi banyak pelanggan."</p>
+      <form action="{{ route('pemesanan.store') }}" method="post" class="row g-3">
+        @csrf
+    
+          <div class="col-md-8">
+            <label for="nama_pemesan" class="form-label">Nama Pemesan</label>
+            <input type="text" class="form-control @error('nama_pemesan') is-invalid @enderror" id="nama_pemesan" name="nama_pemesan" value="{{ old('nama_pemesan') }}" required>
+            @error('nama_pemesan')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>
+            @enderror
+          </div>
+          <div class="col-md-8">
+            <label for="nomor_telp" class="form-label">Nomor Telepon</label>
+            <input type="text" class="form-control @error('nomor_telp') is-invalid @enderror" id="nomor_telp" name="nomor_telp" value="{{ old('nomor_telp') }}" placeholder="+62.." required>
+            @error('nomor_telp')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>
+            @enderror
+          </div>
+          <div class="col-md-8">
+            <label for="berat" class="form-label">Berat (kg)</label>
+            <input type="text" class="form-control @error('berat') is-invalid @enderror" value="{{ old('berat') }}" id="berat" name="berat" required>
+            @error('berat')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>
+            @enderror
+          </div>
+          <div class="col-lg-12">
+            <label for="jenis_barang" class="form-label">Jenis Barang: </label>
+            <div class="form-group">
+              <label for="sayuran_beku">Sayur Beku</label>
+              <input type="checkbox" class="form-check-input" id="sayuran_beku" name="sayuran_beku">
+              <label for="ikan_beku">Ikan Beku</label>
+              <input type="checkbox" class="form-check-input" id="ikan_beku" name="ikan_beku">
+              <label for="daging_beku">Daging Beku</label>
+              <input type="checkbox" class="form-check-input" id="daging_beku" name="daging_beku">
+              <label for="makanan_beku">Makanan Beku</label>
+              <input type="checkbox" class="form-check-input" id="makanan_beku" name="makanan_beku">
             </div>
-          @enderror
-        </div>
-        <div class="col-md-8">
-          <label for="nomor_telp" class="form-label">Nomor Telepon</label>
-          <input type="text" class="form-control @error('nomor_telp') is-invalid @enderror" id="nomor_telp" name="nomor_telp" value="{{ old('nomor_telp') }}" placeholder="+62.." required>
-          @error('nomor_telp')
-            <div class="invalid-feedback">
-              {{ $message }}
-            </div>
-          @enderror
-        </div>
-        <div class="col-md-8">
-          <label for="berat" class="form-label">Berat (kg)</label>
-          <input type="text" class="form-control @error('berat') is-invalid @enderror" value="{{ old('berat') }}" id="berat" name="berat" required>
-          @error('berat')
-            <div class="invalid-feedback">
-              {{ $message }}
-            </div>
-          @enderror
-        </div>
-        <div class="col-lg-12">
-          <label for="jenis_barang" class="form-label">Jenis Barang: </label>
-          <div class="form-group">
-            <label for="sayuran_beku">Sayur Beku</label>
-            <input type="checkbox" class="form-check-input" id="sayuran_beku" name="sayuran_beku">
-            <label for="ikan_beku">Ikan Beku</label>
-            <input type="checkbox" class="form-check-input" id="ikan_beku" name="ikan_beku">
-            <label for="daging_beku">Daging Beku</label>
-            <input type="checkbox" class="form-check-input" id="daging_beku" name="daging_beku">
-            <label for="makanan_beku">Makanan Beku</label>
-            <input type="checkbox" class="form-check-input" id="makanan_beku" name="makanan_beku">
-          </div>       
-        </div>
-        <div class="col-md-8">
-          <label for="kota_asal" class="form-label">Kota Asal</label>
-          <input type="text" class="form-control @error('kota_asal') is-invalid @enderror" id="kota_asal" value="{{ old('kota_asal') }}" name="kota_asal" required>
-          @error('kota_asal')
-            <div class="invalid-feedback">
-              {{ $message }}
-            </div>
-          @enderror
-        </div>
-        <div class="col-md-8">
-          <label for="kota_tujuan" class="form-label">Kota Tujuan</label>
-          <input type="text" class="form-control @error('kota_tujuan') is-invalid @enderror" value="{{ old('kota_tujuan') }}" id="kota_tujuan" name="kota_tujuan" required>
-          @error('kota_tujuan')
-            <div class="invalid-feedback">
-              {{ $message }}
-            </div>
-          @enderror
-        </div>
-        <div class="col-12">
-          <button type="submit" class="btn btn-primary">Simpan</button>
-        </div>
-    </form>
+          </div>
+          <div class="col-md-8">
+            <label for="kota_asal" class="form-label">Kota Asal</label>
+            <input type="text" class="form-control @error('kota_asal') is-invalid @enderror" id="kota_asal" value="{{ old('kota_asal') }}" name="kota_asal" required>
+            @error('kota_asal')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>
+            @enderror
+          </div>
+          <div class="col-md-8">
+            <label for="kota_tujuan" class="form-label">Kota Tujuan</label>
+            <input type="text" class="form-control @error('kota_tujuan') is-invalid @enderror" value="{{ old('kota_tujuan') }}" id="kota_tujuan" name="kota_tujuan" required>
+            @error('kota_tujuan')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>
+            @enderror
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary">Simpan</button>
+          </div>
+      </form>
+  </div>
 
 @endsection

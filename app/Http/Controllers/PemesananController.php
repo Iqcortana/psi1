@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pemesanan;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
+use Illuminate\Support\Str;
 
 class PemesananController extends Controller
 {
@@ -30,7 +32,8 @@ class PemesananController extends Controller
         ]);
 
         // Generate nomor pemesanan jika belum ada
-        $nomorPemesanan = $request->nomor_pemesanan ?? Uuid::uuid4()->toString();
+        $nomorPemesanan = strtoupper(Str::random(8)); // misalnya kode unik 8 karakter
+        $resi = strtolower(str_replace(' ', '_', $request->nama_pemesan)) . '_' . $nomorPemesanan;
 
         Pemesanan::create([
             'nama_pemesan' => $request->nama_pemesan,
@@ -43,25 +46,28 @@ class PemesananController extends Controller
             'makanan_beku' => $request->makanan_beku,
             'kota_asal' => $request->kota_asal,
             'kota_tujuan' => $request->kota_tujuan,
+            'resi' => $resi,
         ]);
-        return redirect('/pemesanan')->with('success', 'Data pemesanan berhasil disimpan.');
+        return redirect('/pemesanan')->with('success', 'Data pemesanan berhasil disimpan dengan resi: ' . $resi);
         
     }
 
-    // public function generateNomorPemesanan()
-    // {
-    //     // Generate UUID versi 4 (random)
-    //     $uuid = Uuid::uuid4();
+    public function track(Request $request)
+    {
+        $resi = $request->input('resi');
+        $nomorPemesanan = substr($resi, strrpos($resi, '_') + 1);
+        $posts = Post::all();
+        
 
-    //     // Jika ingin format tertentu, misalnya tanpa tanda kurung kurawal
-    //     $nomorPemesanan = $uuid->toString();
+        $pemesanan = Pemesanan::where('nomor_pemesanan', $nomorPemesanan)->first();
 
-    //     // Atau jika ingin format dengan prefix tertentu, misalnya 'PO-'
-    //     $nomorPemesanan = 'PO-' . $uuid->toString();
-
-    //     // Simpan nomor pemesanan ke database atau lakukan tindakan lainnya
-    //     // ...
-
-    //     return $nomorPemesanan;
-    // }
+        if ($pemesanan) {
+            return view('home', [
+                'pemesanan' => $pemesanan,
+                'posts' => $posts
+            ], );
+        } else {
+            return redirect()->back()->with('error', 'Resi tidak ditemukan.');
+        }
+    }
 }

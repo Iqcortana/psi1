@@ -23,6 +23,9 @@ return new class extends Migration
             $table->boolean('makanan_beku')->nullable();
             $table->string('kota_asal');
             $table->string('kota_tujuan');
+            $table->string('resi')->unique();
+            $table->enum('status', ['Diproses', 'Disortir', 'Dikirim', 'Sedang Transit', 'Diantar Kurir'])->default('Diproses')->nullable();
+            $table->string('lokasi')->nullable();
             $table->timestamps();
         });
     }

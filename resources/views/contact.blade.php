@@ -1,6 +1,8 @@
 @extends('layouts/main')
 
 @section('container')
+
+
     <!-- Header Start -->
     <div class="container-fluid header bg-white p-0">
         <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
@@ -59,7 +61,7 @@
 
 
     <!-- Contact Start -->
-    <div class="container-xxl py-5">
+    <div class="container-xxl py-5 ">
         <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                 <h1 class="mb-3">Contact Us</h1>
@@ -144,12 +146,13 @@
     </div>
     <!-- Contact End -->
 
+
+    
     <script>
         function initMap() {
         const map = new google.maps.Map(document.getElementById("map"), {
             center: { lat: -34.397, lng: 150.644 },
-            zoom:   
-        8
+            zoom: 8
         });
 
         // Error handling

@@ -27,6 +27,7 @@ class AdminResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-user';
 
+
     public static function form(Form $form): Form
     {
         return $form

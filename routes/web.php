@@ -35,4 +35,4 @@ Route::get('/posts/{post:slug}', [Postcontroller::class, 'show']);
 
 Route::get('/pemesanan', [PemesananController::class, 'create'])->name('pemesanan.create')->middleware('guest');
 Route::post('/pemesanan/store', [PemesananController::class, 'store'])->name('pemesanan.store')->middleware('guest');
-
+Route::get('/track', [PemesananController::class, 'track'])->name('pemesanan.track')->middleware('guest');

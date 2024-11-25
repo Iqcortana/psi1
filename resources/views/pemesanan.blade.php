@@ -1,93 +1,64 @@
 @extends('layouts/main')
 
 @section('container')
-  <!-- Header Start -->
-  <div class="container-fluid header bg-white p-0">
-    <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
-        <div class="col-md-8 p-5 mt-lg-5">
-            <h1 class="display-5 animated fadeIn mb-4">Contact Us</h1> 
-                <nav aria-label="breadcrumb animated fadeIn">
-                <ol class="breadcrumb text-uppercase">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                    <li class="breadcrumb-item text-body active" aria-current="page">Contact</li>
-                </ol>
-            </nav>
-        </div>
-        <div class="col-md-6 animated fadeIn">
-            <img class="img-fluid" src="img/3.jpg" alt="">
-        </div>
-    </div>
-  </div>
-  <!-- Header End -->
-
-
-  <!-- Search Start -->
-  <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
-      <div class="container">
-          <div class="row g-2">
-              <div class="col-md-10">
-                  <div class="row g-2">
-                      <div class="col-md-4">
-                          <input type="text" class="form-control border-0 py-3" placeholder="Search Keyword">
-                      </div>
-                      <div class="col-md-4">
-                          <select class="form-select border-0 py-3">
-                              <option selected>Property Type</option>
-                              <option value="1">Property Type 1</option>
-                              <option value="2">Property Type 2</option>
-                              <option value="3">Property Type 3</option>
-                          </select>
-                      </div>
-                      <div class="col-md-4">
-                          <select class="form-select border-0 py-3">
-                              <option selected>Location</option>
-                              <option value="1">Location 1</option>
-                              <option value="2">Location 2</option>
-                              <option value="3">Location 3</option>
-                          </select>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-2">
-                  <button class="btn btn-dark border-0 w-100 py-3">Search</button>
-              </div>
+    <!-- Header Start -->
+    <div class="container-fluid header bg-white p-0">
+      <div class="row g-0 align-items-center flex-column-reverse flex-md-row p-5"></div>
+      <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
+          <div class="col-md-6 p-5 mt-lg-5">
+              <h1 class="display-5 animated fadeIn mb-4">Pemesanan</h1> 
+                  <nav aria-label="breadcrumb animated fadeIn">
+                  <ol class="breadcrumb text-uppercase">
+                      <li class="breadcrumb-item"><a href="/">Halaman Utama</a></li>
+                      <li class="breadcrumb-item text-body active" aria-current="page"><strong>Pemesanan</strong></li>
+                  </ol>
+              </nav>
+          </div>
+          <div class="col-md-6 animated fadeIn">
+              <img class="img" src="img/platinum.png" alt="" style="width: 468px; height: 223px; object-fit:contain;">
           </div>
       </div>
   </div>
-  <!-- Search End -->
-  @if(session()->has('success'))
+  <!-- Header End -->
+@if(session()->has('success'))
     <div class="alert alert-success col-lg-8" role="alert">
       {{ session('success') }}
     </div>
   @endif
-
-  <div class="wow fadeInUp" data-wow-delay="0.5s">
-      <p class="mb-4">"Dengan jaringan yang luas dan layanan yang andal, Platinum Transport telah menjadi pilihan terpercaya bagi banyak pelanggan."</p>
-      <form action="{{ route('pemesanan.store') }}" method="post" class="row g-3">
-        @csrf
-    
-          <div class="col-md-8">
+  <div class="card">
+    <div class="card-body">
+      <div class="wow fadeInUp" data-wow-delay="0.5s">
+        <h2>Isi Form ini untuk memesan, lalu simpan resinya. setelah itu lakukan:</h2>
+        <ol class="mb-4">
+          <li>Menghubungi CS via Whatsapp dan konfirmasi pembayaran</li>
+          <li>Simpan struk pembayaran dari CS(terdapat nomor resi)</li>
+          <li>Jika lupa kode resi, silahkan hubungi CS atau lihat struk pembayaran</li>
+          <li>Mengecek status dan lokasi barang menggunakan kode resi</li>
+        </ol>
+        <hr>
+        <form action="{{ route('pemesanan.store') }}" method="post" class="row g-3">
+          @csrf
+          <div class="mb-3">
             <label for="nama_pemesan" class="form-label">Nama Pemesan</label>
-            <input type="text" class="form-control @error('nama_pemesan') is-invalid @enderror" id="nama_pemesan" name="nama_pemesan" value="{{ old('nama_pemesan') }}" required>
+            <input type="text" class="form-control @error('nama_pemesan') is-invalid @enderror" id="nama_pemesan" name="nama_pemesan" value="{{ old('nama_pemesan') }}" placeholder="nama anda.." required>
             @error('nama_pemesan')
               <div class="invalid-feedback">
                 {{ $message }}
               </div>
             @enderror
           </div>
-          <div class="col-md-8">
+          <div class="mb-3">
             <label for="nomor_telp" class="form-label">Nomor Telepon</label>
-            <input type="text" class="form-control @error('nomor_telp') is-invalid @enderror" id="nomor_telp" name="nomor_telp" value="{{ old('nomor_telp') }}" placeholder="+62.." required>
+            <input type="text" class="form-control @error('nomor_telp') is-invalid @enderror" id="nomor_telp" name="nomor_telp" value="{{ old('nomor_telp') }}" placeholder="08.." required>
             @error('nomor_telp')
               <div class="invalid-feedback">
                 {{ $message }}
               </div>
             @enderror
           </div>
-          <div class="col-md-8">
+          <div class="mb-3">
             <label for="berat" class="form-label">Berat (kg)</label>
-            <input type="text" class="form-control @error('berat') is-invalid @enderror" value="{{ old('berat') }}" id="berat" name="berat" required>
+            <input type="text" class="form-control @error('berat') is-invalid @enderror" value="{{ old('berat') }}" id="berat" name="berat" placeholder="masukkan angka saja" required>
             @error('berat')
               <div class="invalid-feedback">
                 {{ $message }}
@@ -95,30 +66,62 @@
             @enderror
           </div>
           <div class="col-lg-12">
-            <label for="jenis_barang" class="form-label">Jenis Barang: </label>
-            <div class="form-group">
-              <label for="sayuran_beku">Sayur Beku</label>
-              <input type="checkbox" class="form-check-input" id="sayuran_beku" name="sayuran_beku">
-              <label for="ikan_beku">Ikan Beku</label>
-              <input type="checkbox" class="form-check-input" id="ikan_beku" name="ikan_beku">
-              <label for="daging_beku">Daging Beku</label>
-              <input type="checkbox" class="form-check-input" id="daging_beku" name="daging_beku">
-              <label for="makanan_beku">Makanan Beku</label>
-              <input type="checkbox" class="form-check-input" id="makanan_beku" name="makanan_beku">
+            <label class="form-label">Jenis Barang: </label>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="sayur_buah">
+              <label class="form-check-label" for="sayur_buah">
+                Sayur & Buah
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="daging">
+              <label class="form-check-label" for="daging">
+                Daging
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="ikan">
+              <label class="form-check-label" for="ikan">
+                Ikan
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="ayam">
+              <label class="form-check-label" for="ayam">
+                Ayam
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="eskrim">
+              <label class="form-check-label" for="eskrim">
+                Es Krim
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="makanan_kemasan">
+              <label class="form-check-label" for="makanan_kemasan">
+                Makanan Kemasan Beku (Nugget, Sosis, dll.)
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="makanan_olahan">
+              <label class="form-check-label" for="makanan_olahan">
+                Makanan Olahan Beku (Roti Beku, Pastry, dll.)
+              </label>
             </div>
           </div>
-          <div class="col-md-8">
-            <label for="kota_asal" class="form-label">Kota Asal</label>
-            <input type="text" class="form-control @error('kota_asal') is-invalid @enderror" id="kota_asal" value="{{ old('kota_asal') }}" name="kota_asal" required>
+          <div class="mb-3">
+            <label for="kota_asal" class="form-label">Alamat Asal</label>
+            <input type="text" class="form-control @error('kota_asal') is-invalid @enderror" id="kota_asal" value="{{ old('kota_asal') }}" name="kota_asal" placeholder="Alamat Lengkap" required>
             @error('kota_asal')
               <div class="invalid-feedback">
                 {{ $message }}
               </div>
             @enderror
           </div>
-          <div class="col-md-8">
-            <label for="kota_tujuan" class="form-label">Kota Tujuan</label>
-            <input type="text" class="form-control @error('kota_tujuan') is-invalid @enderror" value="{{ old('kota_tujuan') }}" id="kota_tujuan" name="kota_tujuan" required>
+          <div class="mb-3">
+            <label for="kota_tujuan" class="form-label">Alamat Tujuan</label>
+            <input type="text" class="form-control @error('kota_tujuan') is-invalid @enderror" value="{{ old('kota_tujuan') }}" id="kota_tujuan" name="kota_tujuan" placeholder="Alamat Lengkap" required>
             @error('kota_tujuan')
               <div class="invalid-feedback">
                 {{ $message }}
@@ -128,7 +131,9 @@
           <div class="col-12">
             <button type="submit" class="btn btn-primary">Simpan</button>
           </div>
-      </form>
+        </form>
+      </div>
+    </div>    
   </div>
 
 @endsection

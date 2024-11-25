@@ -7,6 +7,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Str;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 
 class PemesananController extends Controller
 {
@@ -21,12 +22,15 @@ class PemesananController extends Controller
     {
         $request->validate([
         'nama_pemesan' => 'required|string|max:255',
-        'nomor_telp' => 'required|string|regex:/^\\+62[\\s\\-]?[\\d]{10,12}$/',
+        'nomor_telp' => 'required|string',
         'berat' => 'numeric|required',
-        'sayuran_beku' => 'boolean',
-        'ikan_beku' => 'boolean',
-        'daging_beku' => 'boolean',
-        'makanan_beku' => 'boolean',
+        'sayur_buah' => 'boolean',
+        'ikan' => 'boolean',
+        'ayam' => 'boolean',
+        'daging' => 'boolean',
+        'eskrim' => 'boolean',
+        'makanan_kemasan' => 'boolean',
+        'makanan_olahan' => 'boolean',
         'kota_asal' => 'required|string',
         'kota_tujuan' => 'required|string',
         ]);
@@ -34,22 +38,27 @@ class PemesananController extends Controller
         // Generate nomor pemesanan jika belum ada
         $nomorPemesanan = strtoupper(Str::random(8)); // misalnya kode unik 8 karakter
         $resi = strtolower(str_replace(' ', '_', $request->nama_pemesan)) . '_' . $nomorPemesanan;
+        $pemesanan = Pemesanan::latest()->first(); // Ambil data pemesanan terakhir
 
+    
         Pemesanan::create([
             'nama_pemesan' => $request->nama_pemesan,
             'nomor_pemesanan' => $nomorPemesanan,
             'nomor_telp' => $request->nomor_telp,
             'berat' => $request->berat,
-            'sayuran_beku' => $request->sayuran_beku,
-            'ikan_beku' => $request->ikan_beku,
-            'daging_beku' => $request->daging_beku,
-            'makanan_beku' => $request->makanan_beku,
+            'sayur_buah' => $request->sayur_buah,
+            'ikan' => $request->ikan,
+            'ayam' => $request->ayam,
+            'daging' => $request->daging,
+            'eskrim' => $request->eskrim,
+            'makanan_kemasan' => $request->kemasan,
+            'makanan_olahan' => $request->olahan,
             'kota_asal' => $request->kota_asal,
             'kota_tujuan' => $request->kota_tujuan,
             'resi' => $resi,
         ]);
-        return redirect('/pemesanan')->with('success', 'Data pemesanan berhasil disimpan dengan resi: ' . $resi);
-        
+        $pdf = FacadePdf::loadView('struk_pemesanan', compact('pemesanan'));
+        return $pdf->download('struk_' . $pemesanan->resi . '.pdf');
     }
 
     public function track(Request $request)

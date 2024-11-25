@@ -27,6 +27,15 @@ class AdminResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-user';
 
+    public static function canViewAny(): bool
+    {
+        return auth()->user()->role === 'super-admin';
+    }
+
+    public static function canCreate(): bool
+    {
+        return auth()->user()->role === 'super-admin';
+    }
 
     public static function form(Form $form): Form
     {

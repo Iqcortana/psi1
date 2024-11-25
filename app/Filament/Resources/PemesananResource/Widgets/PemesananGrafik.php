@@ -1,16 +1,31 @@
 <?php
 
-namespace App\Filament\Resources\PemesananResource\Widgets;
+namespace App\Filament\Widgets;
 
-use Filament\Widgets\StatsOverviewWidget as BaseWidget;
-use Filament\Widgets\StatsOverviewWidget\Stat;
+use Filament\Widgets\BarChartWidget;
+use App\Models\Pemesanan;
 
-class PemesananGrafik extends BaseWidget
+class PemesananGrafik extends BarChartWidget
 {
-    protected function getStats(): array
+    protected static ?string $heading = 'Grafik Pemesanan';
+
+    protected function getData(): array
     {
+        $data = Pemesanan::query()
+            ->selectRaw('DATE(created_at) as date, COUNT(*) as count')
+            ->groupBy('date')
+            ->orderBy('date')
+            ->get();
+
         return [
-            //
+            'datasets' => [
+                [
+                    'label' => 'Pemesanan',
+                    'data' => $data->pluck('count'),
+                ],
+            ],
+            'labels' => $data->pluck('date'),
         ];
     }
 }
+

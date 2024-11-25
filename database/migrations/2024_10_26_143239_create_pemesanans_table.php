@@ -17,10 +17,13 @@ return new class extends Migration
             $table->string('nomor_pemesanan')->nullable()->unique();
             $table->string('nomor_telp');
             $table->integer('berat');
-            $table->boolean('sayuran_beku')->nullable();
-            $table->boolean('ikan_beku')->nullable();
-            $table->boolean('daging_beku')->nullable();
-            $table->boolean('makanan_beku')->nullable();
+            $table->boolean('sayur_buah')->nullable();
+            $table->boolean('ikan')->nullable();
+            $table->boolean('ayam')->nullable();
+            $table->boolean('daging')->nullable();
+            $table->boolean('eskrim')->nullable();
+            $table->boolean('makanan_kemasan')->nullable();
+            $table->boolean('makanan_olahan')->nullable();
             $table->string('kota_asal');
             $table->string('kota_tujuan');
             $table->string('resi')->unique();

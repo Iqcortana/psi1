@@ -3,106 +3,237 @@
 @section('container')
     <!-- Header Start -->
     <div class="container-fluid header bg-white p-0">
+        <div class="row g-0 align-items-center flex-column-reverse flex-md-row p-5"></div>
         <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
             <div class="col-md-6 p-5 mt-lg-5">
-                <h1 class="display-5 animated fadeIn mb-4">About Us</h1> 
+                <h1 class="display-5 animated fadeIn mb-4">Tentang Kami</h1> 
                     <nav aria-label="breadcrumb animated fadeIn">
                     <ol class="breadcrumb text-uppercase">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                        <li class="breadcrumb-item text-body active" aria-current="page">About</li>
+                        <li class="breadcrumb-item"><a href="/">Halaman Utama</a></li>
+                        <li class="breadcrumb-item text-body active" aria-current="page"><strong>Tentang</strong></li>
                     </ol>
                 </nav>
             </div>
             <div class="col-md-6 animated fadeIn">
-                <img class="img-fluid" src="img/1.jpg" alt="">
+                <img class="img" src="img/platinum.png" alt="" style="width: 468px; height: 223px; object-fit:contain;">
             </div>
         </div>
     </div>
     <!-- Header End -->
 
-    <!-- Search Start -->
-    <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
-        <div class="container">
-            <div class="row g-2">
-                <div class="col-md-10">
-                    <div class="row g-2">
-                        <div class="col-md-4">
-                            <input type="text" class="form-control border-0 py-3" placeholder="Search Keyword">
-                        </div>
-                        <div class="col-md-4">
-                            <select class="form-select border-0 py-3">
-                                <option selected>Tipe Barang</option>
-                                <option value="1">Es Batu</option>
-                                <option value="2">Daging Beku</option>
-                                <option value="3">Ikan Beku</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <select class="form-select border-0 py-3">
-                                <option selected>Lokasi</option>
-                                <option value="1">Samarinda</option>
-                                <option value="2">Balikpapan</option>
-                                <option value="3">Bontang</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <button class="btn btn-dark border-0 w-100 py-3">Search</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Search End -->
-
     <!-- About Start -->
     <div class="container-xxl py-5">
-        <div class="container">
-            <div class="row g-5 align-items-center">
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                    <div class="about-img position-relative overflow-hidden p-5 pe-0">
-                        <img class="img-fluid w-100" src="img/2.jpg">
-                    </div>
-                </div>
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                    <h1 class="mb-4">#Solusi Transportasi Andal, Platinum Transport</h1>
-                    <p class="mb-4">Butuh layanan transportasi yang handal dan terpercaya? Platinum Transport adalah jawabannya. Dengan armada yang terawat baik dan tim profesional, kami siap mengantarkan barang Anda dengan aman dan tepat waktu.</p>
-                    <p><i class="fa fa-check text-primary me-3"></i>Pengiriman tepat waktu</p>
-                    <p><i class="fa fa-check text-primary me-3"></i>Asuransi pengiriman</p>
-                    <p><i class="fa fa-check text-primary me-3"></i>Layanan pelanggan 24/7</p>
-                    <a class="btn btn-primary py-3 px-5 mt-3" href="">Read More</a>
-                </div>
+        <h1 class="my-4 wow fadeIn" data-wow-delay="0.5s">Tentang Platinum Transport</h1>
+        <div class="row wow fadeIn" data-wow-delay="0.5s">
+            <div class="col-md-10">
+                <p>Platinum Transport adalah perusahaan jasa pengiriman makanan beku yang telah melayani kebutuhan pelanggan di seluruh Indonesia sejak tahun 2020. Kami mengkhususkan diri dalam pengiriman melalui jalur darat dan laut, memastikan setiap produk tetap terjaga kualitasnya selama perjalanan.</p>
             </div>
         </div>
+        <h2 class="my-4 wow fadeIn" data-wow-delay="0.5s">Misi Platinum Transport</h2>
+        <div class="row mx-4 wow fadeIn" data-wow-delay="0.5s">
+            <p><i class="fa fa-hourglass text-primary me-3"></i>Pengiriman tepat waktu</p>
+            <p><i class="fa fa-clipboard-check text-primary me-3"></i>Asuransi pengiriman</p>
+            <p><i class="fa fa-clock text-primary me-3"></i>Layanan pelanggan 24/7</p>
+        </div>
+        <h2 class="my-4 wow fadeIn" data-wow-delay="0.5s">Keunggulan Platinum Transport</h2>
+        <div class="row mx-4 wow fadeIn" data-wow-delay="0.5s">
+            <p><i class="fa fa-check text-primary me-3"></i>Armada Pendingin Modern: Menjaga suhu optimal untuk semua jenis makanan beku.</p>
+            <p><i class="fa fa-check text-primary me-3"></i>Jaringan Luas: Menjangkau berbagai kota di seluruh Indonesia.</p>
+            <p><i class="fa fa-check text-primary me-3"></i>Layanan Pelanggan 24/7: Siap membantu kapan saja.</p>
+        </div>
+
     </div>
     <!-- About End -->
 
-    <!-- Call to Action Start -->
+    <!-- Category Start -->
     <div class="container-xxl py-5">
         <div class="container">
-            <div class="bg-light rounded p-3">
-                <div class="bg-white rounded p-4" style="border: 1px dashed rgba(0, 185, 142, .3)">
-                    <div class="row g-5 align-items-center">
-                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                            <img class="img-fluid rounded w-100" src="img/speed.png" alt="">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                <h1 class="mb-3">Tipe Barang</h1>
+                <p>Tipe Barang Spesifik Membutuhkan Perlakuan Khusus. Platinum Transport memahami kebutuhan unik setiap jenis barang. Dapatkan layanan pengiriman yang disesuaikan dengan kebutuhan Anda.</p>
+            </div>
+            <div class="testimonial-item bg-light rounded p-3 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="bg-white border rounded p-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="img-fluid rounded" src="img/sayur 3d.png" style="width: 223px; height: 223px; object-fit: contain;">
                         </div>
-                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                            <div class="mb-4">
-                                <h1 class="mb-3">Contact With Our Certified Agent</h1>
-                                <p>"Platinum Transport, spesialis pengiriman makanan beku dengan armada truk berpendingin, menjangkau seluruh wilayah Indonesia.</p>
+                        <div class="col-md-8 align-items-center">
+                            <div class="ps-3">
+                                <h6 class="fw-bold mb-1">Sayur & Buah Beku</h6>
+                                <p><b>Suhu Ideal:</b> -18°C hingga -20°C.</p>
+                                <p><b>Perlakuan Khusus:</b></br>
+                                    <ul>
+                                        <li>
+                                            Penyimpanan dalam kotak atau kemasan khusus untuk mencegah kerusakan akibat tekanan atau benturan.
+                                        </li>
+                                        <li>
+                                            Pastikan produk tidak mengalami pembekuan ulang atau perubahan suhu yang drastis untuk menjaga tekstur dan nutrisi. 
+                                        </li>
+                                    </ul>
+                                </p>
                             </div>
-                            <a href="" class="btn btn-primary py-3 px-4 me-2"><i class="fa fa-phone-alt me-2"></i>Make A Call</a>
-                            <a href="" class="btn btn-dark py-3 px-4"><i class="fa fa-calendar-alt me-2"></i>Get Appoinment</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-item bg-light rounded p-3 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="bg-white border rounded p-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="img-fluid rounded" src="img/ikan 3d.png" style="width: 223px; height: 223px; object-fit: contain;">
+                        </div>
+                        <div class="col-md-8 align-items-center">
+                            <div class="ps-3">
+                                <h6 class="fw-bold mb-1">Ikan Beku</h6>
+                                <p><b>Suhu Ideal:</b> -18°C atau lebih rendah.</p>
+                                <p><b>Perlakuan Khusus:</b></br>
+                                    <ul>
+                                        <li>
+                                            Penyimpanan dan transportasi dalam kondisi vakum atau dibungkus rapat untuk menghindari kontaminasi bau.
+                                        </li>
+                                        <li>
+                                            Penanganan cepat untuk mencegah pembekuan ulang (refreezing), yang dapat memengaruhi kualitas dan tekstur ikan.
+                                        </li>
+                                    </ul>
+                                </p>
+            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-item bg-light rounded p-3 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="bg-white border rounded p-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="img-fluid rounded" src="img/chicken 3d.png" style="width: 223px; height: 223px; object-fit: contain;">
+                        </div>
+                        <div class="col-md-8 align-items-center">
+                            <div class="ps-3">
+                                <h6 class="fw-bold mb-1">Ayam Beku</h6>
+                                <p><b>Suhu Ideal:</b> -18°C hingga -20°C.</p>
+                                <p><b>Perlakuan Khusus:</b></br>
+                                    <ul>
+                                        <li>
+                                            Dikemas dengan plastik tahan bocor untuk menghindari cairan (drip loss) merusak produk lain di dalam kendaraan.
+                                        </li>
+                                        <li>
+                                            Transportasi dilakukan dengan menjaga suhu stabil untuk mencegah pembekuan ulang dan menghindari pertumbuhan bakteri.                                         
+                                        </li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-item bg-light rounded p-3 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="bg-white border rounded p-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="img-fluid rounded" src="img/meat 3d.png"style="width: 223px; height: 223px; object-fit: contain;">
+                        </div>
+                        <div class="col-md-8 align-items-center">
+                            <div class="ps-3">
+                                <h6 class="fw-bold mb-1">Daging Beku</h6>
+                                <p><b>Suhu Ideal:</b> -18°C hingga -22°C.</p>
+                                <p><b>Perlakuan Khusus:</b></br>
+                                    <ul>
+                                        <li>
+                                            Dikemas dalam kemasan kedap udara untuk mencegah oksidasi dan pembakaran freezer (freezer burn).                                        </li>
+                                        <li>
+                                            Penempatan daging di ruang kendaraan yang tidak saling bertumpukan untuk menjaga aliran udara dingin merata.                                        </li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-item bg-light rounded p-3 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="bg-white border rounded p-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="img-fluid rounded" src="img/eskrim.jpg" style="width: 223px; height: 223px; object-fit: contain;">
+                        </div>
+                        <div class="col-md-8 align-items-center">
+                            <div class="ps-3">
+                                <h6 class="fw-bold mb-1">Es Krim</h6>
+                                <p><b>Suhu Ideal:</b> -23°C atau lebih rendah.</p>
+                                <p><b>Perlakuan Khusus:</b></br>
+                                    <ul>
+                                        <li>
+                                            Transportasi menggunakan kendaraan dengan suhu ultra-rendah untuk mencegah es krim mencair sebagian dan kehilangan konsistensi.
+                                        </li>
+                                        <li>
+                                            Hindari membuka pintu kendaraan terlalu sering untuk mempertahankan suhu stabil.
+                                        </li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-item bg-light rounded p-3 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="bg-white border rounded p-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="img-fluid rounded" src="img/pack 3d.png" style="width: 223px; height: 223px; object-fit: contain;">
+                        </div>
+                        <div class="col-md-8 align-items-center">
+                            <div class="ps-3">
+                                <h6 class="fw-bold mb-1">Makanan Kemasan Beku (Nugget, Sosis, dll.)</h6>
+                                <p><b>Suhu Ideal:</b> -18°C atau lebih rendah.
+                                </p>
+                                <p><b>Perlakuan Khusus:</b></br>
+                                    <ul>
+                                        <li>
+                                            Pengemasan di dalam kotak tertutup untuk mencegah kerusakan bentuk dan pencampuran aroma.
+                                        </li>
+                                        <li>
+                                            Pastikan produk tetap dalam posisi stabil selama transportasi agar tidak berubah bentuk.
+                                        </li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-item bg-light rounded p-3 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="bg-white border rounded p-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="img-fluid rounded" src="img/pastry.jpg" style="width: 223px; height: 223px; object-fit: contain;">
+                        </div>
+                        <div class="col-md-8 align-items-center">
+                            <div class="ps-3">
+                                <h6 class="fw-bold mb-1">Makanan Olahan Beku (Roti Beku, Pastry, dll.)</h6>
+                                <p><b>Suhu Ideal:</b> -18°C hingga -20°C.
+                                </p>
+                                <p><b>Perlakuan Khusus:</b></br>
+                                    <ul>
+                                        <li>
+                                            Disimpan dalam wadah atau pembungkus yang mencegah kelembapan masuk agar tekstur tetap terjaga.
+                                        </li>
+                                        <li>
+                                            Hindari penumpukan berlebihan untuk menjaga bentuk dan mencegah kerusakan fisik.
+                                        </li>
+                                    </ul>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Call to Action End -->
+    <!-- Category End -->
 
-    <!-- Team Start -->
+
+    <!-- agen Start -->
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
@@ -110,72 +241,31 @@
                 <p>Tim kami siap membantu Anda dalam setiap langkah pengiriman. Dengan pengalaman bertahun-tahun, kami menjamin pengiriman barang Anda aman dan tepat waktu.</p>
             </div>
             <div class="row g-4">
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="team-item rounded overflow-hidden">
-                        <div class="position-relative">
-                            <img class="img-fluid" src="img/bob.png" alt="">
-                            <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4 mt-3">
-                            <h5 class="fw-bold mb-0">Full Name</h5>
-                            <small>Designation</small>
-                        </div>
+                <div class="container mt-5">
+                    <div class="logo-container">
+                      <div class="logo-slide">
+                        <img src="img/PT.-Pelni.jpg" alt="Pelni">
+                        <img src="img/PT.-Samudera-Indonesia.jpg" alt="Samudra">
+                        <img src="img/PT.-ASDP-Indonesia-Ferry.jpg" alt="ASDP">
+                        <img src="img/PT.-Sillo-Maritime-Perdana.jpg" alt="Sillo">
+                        <img src="img/PT.-K-Line-Indonesia.jpg" alt="K-Line">
+                        <img src="img/PT.-Temas.jpg" alt="Temas">
+                        <img src="img/PT.-Meratus-Line.jpg" alt="Meratus">
+                        <img src="img/Cosco-Shipping-Lines-Indonesia.jpg" alt="Cosco">
+                        {{-- duplikat --}}
+                        <img src="img/PT.-Pelni.jpg" alt="Pelni">
+                        <img src="img/PT.-Samudera-Indonesia.jpg" alt="Samudra">
+                        <img src="img/PT.-ASDP-Indonesia-Ferry.jpg" alt="ASDP">
+                        <img src="img/PT.-Sillo-Maritime-Perdana.jpg" alt="Sillo">
+                        <img src="img/PT.-K-Line-Indonesia.jpg" alt="K-Line">
+                        <img src="img/PT.-Temas.jpg" alt="Temas">
+                        <img src="img/PT.-Meratus-Line.jpg" alt="Meratus">
+                        <img src="img/Cosco-Shipping-Lines-Indonesia.jpg" alt="Cosco">
+                      </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="team-item rounded overflow-hidden">
-                        <div class="position-relative">
-                            <img class="img-fluid" src="img/petrik.png" alt="">
-                            <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4 mt-3">
-                            <h5 class="fw-bold mb-0">Full Name</h5>
-                            <small>Designation</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="team-item rounded overflow-hidden">
-                        <div class="position-relative">
-                            <img class="img-fluid" src="img/pororo.png" alt="">
-                            <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4 mt-3">
-                            <h5 class="fw-bold mb-0">Full Name</h5>
-                            <small>Designation</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="team-item rounded overflow-hidden">
-                        <div class="position-relative">
-                            <img class="img-fluid" src="img/doraemon.png" alt="">
-                            <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4 mt-3">
-                            <h5 class="fw-bold mb-0">Full Name</h5>
-                            <small>Designation</small>
-                        </div>
-                    </div>
-                </div>
+                  </div>
             </div>
         </div>
     </div>
-    <!-- Team End -->
+    <!-- agen End -->
 @endsection

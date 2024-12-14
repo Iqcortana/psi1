@@ -87,8 +87,13 @@ class PemesananResource extends Resource
     {
         return [
             'index' => Pages\ListPemesanans::route('/'),
-            'create' => Pages\CreatePemesanan::route('/create'),
+            // 'create' => Pages\CreatePemesanan::route('/create'),
             'edit' => Pages\EditPemesanan::route('/{record}/edit'),
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        return false; // Menyembunyikan tombol "Create"
     }
 }

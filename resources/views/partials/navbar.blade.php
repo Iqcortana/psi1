@@ -1,11 +1,11 @@
 <!-- Navbar Start -->
 <div class="container-fluid nav-bar bg-transparent">
     <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
-        <a href="/" class="navbar-brand d-flex align-items-center text-center">
-            <div class="icon p-2 me-2">
+        <a href="/" class="navbar-brand d-flex align-items-center text-center mb-2">
+            <div class="icon p-2 me-4">
                 <img class="img-fluid" src="{{ asset('img/platinum.png') }}" alt="Icon" style="width: 30px; height: 30px;">
             </div>
-            <h1 class="m-0 text-primary">Platinum Transport</h1>
+            <img src="{{ asset('img/platinum-logo.png') }}" alt="Platinum Transport" style="width: 250px; height: auto;">
         </a>
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
